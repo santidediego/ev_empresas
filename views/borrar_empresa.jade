@@ -1,0 +1,18 @@
+extends layout
+block content
+	h2 Borrar Empresa
+
+	ul
+	-for (i in lista)
+		li  Empresa: #{lista[i].emp}
+		li  Alumno : #{lista[i].alumno}
+		li  Fecha de Inicio : #{lista[i].fechainicio}
+		li  Fecha de Finalizacion : #{lista[i].fechafinalizacion}
+		li  Calificación : #{lista[i].calificacion}
+		br
+
+	form(method="post", action="/borrar_empresa")
+		label Alumno :
+		input(type="text", name="alumno", placeholder=" Nombre Alumno")
+		br
+		input(type="submit", value="Borrar")
