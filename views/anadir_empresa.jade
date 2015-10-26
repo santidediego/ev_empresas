@@ -4,25 +4,25 @@ block content
 
   ul
   -for (i in lista)
-    li  Empresa: #{lista[i].emp}
+    li  Empresa: #{lista[i].empresa}
     li  Alumno : #{lista[i].alumno}
-    li  Fecha de Inicio : #{lista[i].fechainicio}
-    li  Fecha de Finalizacion : #{lista[i].fechafinalizacion}
+    li  Fecha de Inicio : #{lista[i].inicio}
+    li  Fecha de Finalizacion : #{lista[i].fin}
     li  Calificación : #{lista[i].calificacion}
     br
     
   form(method="post", action="/anadir_empresa")
     label Empresa : 
-    input(type="text", name="emp", placeholder=" Nombre de la Empresa")
+    input(type="text", name="empresa", placeholder=" Nombre de la Empresa")
     br
     label Alumno : 
     input(type="text", name="alumno", placeholder=" Nombre del Alumno")
     br
     label Fecha de inicio : 
-    input(type="date", name="fechainicio")
+    input(type="date", name="inicio")
     br
     label Fecha de finalización : 
-    input(type="date", name="fechafinalizacion")
+    input(type="date", name="fin")
     br
     label Calificación :
     input(type="number", name="calificacion", min="0", max="10")

@@ -7,7 +7,6 @@ var assert = require("assert");
 
 var lista = new Array();
 
-//assert
 function lista_alumnos(req, res){
    res.render('lista_alumnos', {
       lista: lista
@@ -17,7 +16,7 @@ function lista_alumnos(req, res){
 
 
 exports.get_lista_alumnos = function(req, res){
-	listar_alumnos(req, res)
+	lista_alumnos(req, res)
 };
 
 
@@ -37,9 +36,9 @@ function borrar_empresa(req, res){
 }
 
 exports.post_borrar_empresa = function(req, res){
-   var item = req.body.alumno;
+   var al = req.body.alumno;
    for(var i = lista.length; i--;) {
-       if(lista[i].alumno === item) {
+       if(lista[i].alumno === al) {
               lista.splice(i, 1);
           }
       }
@@ -57,20 +56,26 @@ exports.get_anadir_empresa = function(req, res){
 }
 
 exports.post_anadir_empresa = function(req, res){
-   var emp = req.body.emp;
+   var empresa = req.body.empresa;
    var alumno = req.body.alumno;
-   var fechainicio = req.body.fechainicio;
-   var fechafinalizacion = req.body.fechafinalizacion;
+   var inicio = req.body.inicio;
+   var fin = req.body.fin;
    var calificacion = req.body.calificacion;
    lista.push({
-      emp: emp,
+      empresa: empresa,
       alumno: alumno,
-      fechainicio: fechainicio,
-      fechafinalizacion: fechafinalizacion,
+      inicio: inicio,
+      fin: fin,
       calificacion: calificacion
 
    })
 
-
+   //Para las aserciones voy a comprobar si existen los objetos que he mandado por el formulario
+   assert(empresa,"Nombre de la empresa introducida");
+   assert(alumno,"Nombre de alumno introducido");
+   assert(inicio,"Fecha de inicio introducida")
+   assert(fin,"Fecha de finalización introducida");
+   assert(calificacion,"Calificación introducida")
+   console.log("Si has llegado aquí, han pasado todos los tests");
    anadir_empresa(req, res);
 }
