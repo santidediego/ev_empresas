@@ -8,7 +8,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//anadido assert
+var alumnos = require('./routes/empresa');
+//
 var app = express();
+
+var empresas = require('./routes/empresa');
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +28,19 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+app.get('/alumnos', empresas.get_lista_alumnos);
+
+
 app.use('/', routes);
 app.use('/users', users);
+
+app.get('/anadir_empresa', empresas.get_anadir_empresa);
+app.post('/anadir_empresa', empresas.post_anadir_empresa);
+
+app.get('/borrar_empresa', empresas.get_borrar_empresa);
+app.post('/borrar_empresa', empresas.post_borrar_empresa);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
